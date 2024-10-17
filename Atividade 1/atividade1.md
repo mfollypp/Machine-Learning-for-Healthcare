@@ -1,47 +1,47 @@
 # Atividade 1 - Regressão Logística
 
 ## Descrição do Data Set
-* `age`: Idade do paciente.
-    *  Idade pode influenciar o risco de doenças cardíacas.
+`age`: Idade do paciente.
+*  Idade pode influenciar o risco de doenças cardíacas.
 
-* `sex`: Sexo (1 = masculino; 0 = feminino).
-    * Homens e mulheres podem ter diferentes riscos cardíacos.
+`sex`: Sexo (1 = masculino; 0 = feminino).
+* Homens e mulheres podem ter diferentes riscos cardíacos.
 
-* `cp`: Tipo de dor no peito (4 valores: 1 = angina típica; 2 = angina atípica; 3 = dor não anginosa; 4 = assintomática).
-    * Angina é uma dor no peito ou sensação de pressão que ocorre quando o músculo cardíaco não recebe oxigênio suficiente.
+`cp`: Tipo de dor no peito (4 valores: 1 = angina típica; 2 = angina atípica; 3 = dor não anginosa; 4 = assintomática).
+* Angina é uma dor no peito ou sensação de pressão que ocorre quando o músculo cardíaco não recebe oxigênio suficiente.
 
-* `trestbps`: Pressão arterial em repouso (mm Hg).
-    * Pressão alta pode ser um fator de risco para doenças cardíacas.
+`trestbps`: Pressão arterial em repouso (mm Hg).
+* Pressão alta pode ser um fator de risco para doenças cardíacas.
 
-* `chol`: Colesterol sérico em mg/dl.
-    * Níveis altos de colesterol podem levar a aterosclerose.
+`chol`: Colesterol sérico em mg/dl.
+* Níveis altos de colesterol podem levar a aterosclerose.
 
-* `fbs`: Açúcar no sangue em jejum > 120 mg/dl (1 = verdadeiro; 0 = falso).
-    * Açúcar elevado pode indicar diabetes, um fator de risco cardíaco.
+`fbs`: Açúcar no sangue em jejum > 120 mg/dl (1 = verdadeiro; 0 = falso).
+* Açúcar elevado pode indicar diabetes, um fator de risco cardíaco.
 
-* `restecg`: Resultados do eletrocardiograma em repouso (0 = normal; 1 = com anormalidade na onda ST-T; 2 = hipertrofia ventricular esquerda).
-    * Anormalidades no ECG podem indicar problemas cardíacos.
+`restecg`: Resultados do eletrocardiograma em repouso (0 = normal; 1 = com anormalidade na onda ST-T; 2 = hipertrofia ventricular esquerda).
+* Anormalidades no ECG podem indicar problemas cardíacos.
 
-* `thalach`: Frequência cardíaca máxima atingida.
-    * Frequência cardíaca alta pode indicar boa saúde cardiovascular.
+`thalach`: Frequência cardíaca máxima atingida.
+* Frequência cardíaca alta pode indicar boa saúde cardiovascular.
 
-* `exang`: Angina induzida por exercício (1 = sim; 0 = não).
-    * Angina durante exercício pode indicar doença arterial coronariana.
+`exang`: Angina induzida por exercício (1 = sim; 0 = não).
+* Angina durante exercício pode indicar doença arterial coronariana.
 
-* `oldpeak`: Depressão do segmento ST induzida por exercício em relação ao repouso.
-    * Depressão ST pode indicar isquemia miocárdica.
+`oldpeak`: Depressão do segmento ST induzida por exercício em relação ao repouso.
+* Depressão ST pode indicar isquemia miocárdica.
 
-* `slope`: Inclinação do segmento ST no pico do exercício (1 = subida; 2 = plana; 3 = descendente).
-    * Inclinação ST pode ajudar a diagnosticar a gravidade da isquemia.
+`slope`: Inclinação do segmento ST no pico do exercício (1 = subida; 2 = plana; 3 = descendente).
+* Inclinação ST pode ajudar a diagnosticar a gravidade da isquemia.
 
-* `ca`: Número de vasos principais (0-3) coloridos por fluoroscopia.
-    * Mais vasos coloridos podem indicar maior gravidade da doença.
+`ca`: Número de vasos principais (0-3) coloridos por fluoroscopia.
+* Mais vasos coloridos podem indicar maior gravidade da doença.
 
-* `thal`: 0 = normal; 1 = defeito fixo; 2 = defeito reversível.
-    * Defeitos no tálio podem indicar áreas de isquemia ou infarto.
+`thal`: 0 = normal; 1 = defeito fixo; 2 = defeito reversível.
+* Defeitos no tálio podem indicar áreas de isquemia ou infarto.
 
-* `target`: Diagnóstico de doença cardíaca (1 = presença de doença; 0 = ausência de doença).
-    * Indica se o paciente tem ou não doença cardíaca.
+`target`: Diagnóstico de doença cardíaca (1 = presença de doença; 0 = ausência de doença).
+* Indica se o paciente tem ou não doença cardíaca.
 
 ## Análise Descritiva das Variáveis
 
@@ -56,12 +56,7 @@
 | 75%   |   61       |    1        |   2        |   140      |  275      |    0        |    1        |  166      |    1        |    1.8     |   2        |    1        |    3       |    1        |
 | max   |   77       |    1        |   3        |   200      |  564      |    1        |    2        |  202      |    1        |    6.2     |   2        |    4        |    3       |    1        |
 
-> As colunas `age`, `cp` e `slope` tiveram seus valores 0 trocados por NaN
-
-### Foi observado que:
-
-* Obs 1
-* Obs 2
+> As colunas `age`, `cp` e `slope` tiveram seus valores 0 trocados por NaN pois indicam ausência de dado
 
 
 ---
@@ -127,6 +122,8 @@
 | ------------------------- | ------- |
 | 0.2711 | 0.0000 |
 
+Fazer para outras correlações...
+
 ---
 
 ## Modelo Explicativo: Regressão Logística
@@ -146,7 +143,7 @@ coef['Intercept'] = model.intercept_
 print(f'\n\n{coef}')
 ```
 
-> Explicando a ideia do modelo
+> Explicar a ideia do modelo e como funciona a regressão logistica por alto
 
 
 ---

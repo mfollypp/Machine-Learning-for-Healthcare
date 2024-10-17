@@ -88,10 +88,16 @@
 ### Pairplot (Gráfico de Dispersão):
 ![Pairplot](images/pairplot.png)
 
+> Correlação Positiva: Se os pontos parecem formar uma linha inclinada para cima (da esquerda para a direita), indica que as duas variáveis tendem a aumentar juntas
+>
+> Correlação Negativa: Se a linha se inclina para baixo, isso significa que uma variável tende a diminuir à medida que a outra aumenta
+>
+> Nenhuma Correlação: Se os pontos estão espalhados aleatoriamente, sem um padrão claro, há pouca ou nenhuma correlação entre as variáveis
+
 ### Foi observado:
 
-* Obs 1
-* Obs 2
+* Parece que a frequência cardíaca máxima (thalach) tende a diminuir com o avanço da idade
+* As outras variáveis não parecem ter uma correlação aparente em vista que os pontos
 
 
 ---
@@ -130,7 +136,13 @@ coef['Intercept'] = model.intercept_
 print(f'\n\n{coef}')
 ```
 
-> Explicar a ideia do modelo e como funciona a regressão logistica por alto
+O que é Regressão Logística?
+
+* A regressão logística é uma técnica de modelagem estatística usada para prever a probabilidade de um resultado binário (com duas categorias) com base em uma ou mais variáveis independentes (também chamadas de preditoras). Ao contrário da regressão linear, que prevê um valor numérico contínuo, a regressão logística é usada para prever probabilidades que, em última análise, são classificadas em uma de duas categorias, como "sim/não", "sucesso/fracasso" ou "positivo/negativo".
+
+Como Funciona?
+
+* A regressão logística transforma a combinação linear das variáveis preditoras em uma probabilidade, utilizando a função logística (ou sigmoide). A função logística mapeia qualquer valor real em um intervalo entre 0 e 1, o que é ideal para prever probabilidades.
 
 
 ---

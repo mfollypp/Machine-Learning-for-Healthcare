@@ -1,5 +1,7 @@
 # Machine-Learning-for-Healthcare
-Repositório para a optativa Tópicos II em IA (ML aplicada a saúde)
+Repositório para a optativa Tópicos II em IA (ML aplicada a saúde) do professor Flávio Luiz Seixas na UFF
+
+A maioria das atividades e informações obtidas nesse repositório foram obtidas do [repositório do professor Flávio Luiz Seixas](https://github.com/flavioluizseixas/aprendizado-de-maquina-na-saude/tree/main)
 
 ## Para executar qualquer atividade basta ter uma versão do Python >=3.4 instalada (pois já vem com pip) e realizar os seguintes passos:
 0. Clone esse repositório na sua máquina

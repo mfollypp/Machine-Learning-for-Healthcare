@@ -135,8 +135,8 @@
 ## Modelo Explicativo: Regressão Logística
 
 ```python
-# Preparar os dados para o modelo (Com Age e Trestbps: Intercept = 3.96587 / 98.15% de probabilidade)
-X = data[['age', 'trestbps', 'thalach', 'cp', 'ca']].dropna()
+# Preparar os dados para o modelo
+X = data[['age', 'sex', 'cp', 'chol', 'thalach', 'ca']].dropna()
 y = data.loc[X.index, 'target']
 
 # Ajustar o modelo de regressão logística
@@ -167,8 +167,20 @@ Como Funciona?
 |---:|-----------:|---------:|---------:|------------:|----------:|---------:|------------:|
 |  0 | -0.0485356 | -2.53564 | -0.11936 | -0.00822811 |  0.031184 | -0.43818 |     3.50242 |
 
+> Para calcular a probabilidade a partir do log-odds (intercepto) de 3.50242, podemos seguir os seguintes passos:
+>
+> Calcular o valor de: `e^(-3.50242) ~= 0.0301`
+>
+> Adicionar 1 ao resultado: `1 + 0.0301 = 1.0301`
+>
+> Calcular o inverso do resultado: `1/1.0301 = 0.9708`
+>
+> Portanto, a probabilidade é aproximadamente 0.9708, ou `97.08%`
+
 ### AIC do modelo:
 441.2955477421557
+
+> Quanto menor o AIC melhor o modelo
 
 ### Odds Ratio:
 |         |   Odds Ratio |
@@ -181,9 +193,14 @@ Como Funciona?
 | thalach |    1.03348   |
 | ca      |    0.636721  |
 
+Os fatores de risco mais relevantes são:
 
+* Idade
+* Tipo de dor no peito
+* Colesterol
+* Frequência cardíaca máxima
 ---
 
 ## Conclusão
 
-Os fatores de risco mais relevantes para a previsão da doença cardíaca são `tais` e esses insights podem ser utilizados em prática clínica ou em futuros estudos de `tal maneira`
+Os fatores de risco mais relevantes para a previsão da doença cardíaca são `Idade`, `Tipo de dor no peito`, `Colesterol` e `Frequência cardíaca máxima` e esses insights podem ser utilizados em prática clínica ou em futuros estudos de `para direcionar os pacientes para exames mais específicos ou na descoberta da presença de algum tipo de doença cardíaca`

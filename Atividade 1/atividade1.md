@@ -69,35 +69,33 @@
 ## Referência de Imagens
 
 ### Histogramas:
-| ![Imagem 1](images/histograms/histogram_age.png) | ![Imagem 2](images/histograms/histogram_chol.png) |
+| ![histogram_age](images/histograms/histogram_age.png) | ![histogram_chol](images/histograms/histogram_chol.png) |
 |--------------------------------|--------------------------------|
-| ![Imagem 3](images/histograms/histogram_thalach.png) | ![Imagem 4](images/histograms/histogram_trestbps.png)
+| ![histogram_thalach](images/histograms/histogram_thalach.png) | ![histogram_trestbps](images/histograms/histogram_trestbps.png) |
 
 ### Foi observado que:
 
 * Obs 1
 * Obs 2
-
 
 ### Boxplots:
-| ![Imagem 1](images\boxplots\boxplot_age.png) | ![Imagem 2](images\boxplots\boxplot_chol.png) |
+| ![boxplot_age](images/boxplots/boxplot_age.png) | ![boxplot_chol](images/boxplots/boxplot_chol.png) |
 |--------------------------------|--------------------------------|
-| ![Imagem 3](images\boxplots\boxplot_thalach.png) | ![Imagem 4](images\boxplots\boxplot_trestbps.png)
+| ![boxplot_thalach](images/boxplots/boxplot_thalach.png) | ![boxplot_trestbps](images/boxplots/boxplot_trestbps.png) |
 
 ### Foi observado que:
 
 * Obs 1
 * Obs 2
 
-
 ### Scatterplots:
-| ![Imagem 1](images\scatterplots\scatterplot_age_chol.png) | ![Imagem 2](images\scatterplots\scatterplot_age_thalach.png) |
+| ![scatterplot_age_chol](images/scatterplots/scatterplot_age_chol.png) | ![scatterplot_age_thalach](images/scatterplots/scatterplot_age_thalach.png) |
 |--------------------------------|--------------------------------|
-| ![Imagem 3](images\scatterplots\scatterplot_age_trestbps.png) | ![Imagem 4](images\scatterplots\scatterplot_chol_age.png) |
-| ![Imagem 5](images\scatterplots\scatterplot_chol_thalach.png) | ![Imagem 6](images\scatterplots\scatterplot_chol_trestbps.png) |
-| ![Imagem 7](images\scatterplots\scatterplot_thalach_age.png) | ![Imagem 8](images\scatterplots\scatterplot_thalach_chol.png) |
-| ![Imagem 9](images\scatterplots\scatterplot_thalach_trestbps.png) | ![Imagem 10](images\scatterplots\scatterplot_trestbps_age.png) |
-| ![Imagem 11](images\scatterplots\scatterplot_trestbps_chol.png) | ![Imagem 12](images\scatterplots\scatterplot_trestbps_thalach.png)
+| ![scatterplot_age_trestbps](images/scatterplots/scatterplot_age_trestbps.png) | ![scatterplot_chol_age](images/scatterplots/scatterplot_chol_age.png) |
+| ![scatterplot_chol_thalach](images/scatterplots/scatterplot_chol_thalach.png) | ![scatterplot_chol_trestbps](images/scatterplots/scatterplot_chol_trestbps.png) |
+| ![scatterplot_thalach_age](images/scatterplots/scatterplot_thalach_age.png) | ![scatterplot_thalach_chol](images/scatterplots/scatterplot_thalach_chol.png) |
+| ![scatterplot_thalach_trestbps](images/scatterplots/scatterplot_thalach_trestbps.png) | ![scatterplot_trestbps_age](images/scatterplots/scatterplot_trestbps_age.png) |
+| ![scatterplot_trestbps_chol](images/scatterplots/scatterplot_trestbps_chol.png) | ![scatterplot_trestbps_thalach](images/scatterplots/scatterplot_trestbps_thalach.png) |
 
 ### Foi observado que:
 

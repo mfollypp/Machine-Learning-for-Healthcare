@@ -12,3 +12,4 @@ Repositório para a optativa Tópicos II em IA (ML aplicada a saúde)
     * Ele vai instalar todas as bibliotecas/dependências necessárias para o projeto
 5. Agora basta escolher qual atividade deseja executar o python
     * Para a Atividade 1 seria acessar o diretório `cd '.\Atividade 1'` e executar `python regressao_logistica.py`
+> Obs.: Para a Atividade 1, caso deseje gerar novas imagens execute `python regressao_logistica.py --generate-images` ou troque o `--generate-images` por `-g`

@@ -68,40 +68,27 @@
 |--------------------------------|--------------------------------|
 | ![histogram_thalach](images/histograms/histogram_thalach.png) | ![histogram_trestbps](images/histograms/histogram_trestbps.png) |
 
-### Foi observado que:
+### Foi observado:
 
-* Obs 1
-* Obs 2
+* Maior porcentagem de pacientes com doenças cardíacas tem entre 40 - 54 anos
+* Maior porcentagem de pacientes com doenças cardíacas tem 180 - 260 de colesterol
+* Pacientes com frequência cardíaca máxima maior que 150 apresentam alguma doença cardíaca
+* A pressão arterial em repouso é bem distribuída entre pacientes com e sem doença cardíaca
 
 ### Boxplots:
 | ![boxplot_age](images/boxplots/boxplot_age.png) | ![boxplot_chol](images/boxplots/boxplot_chol.png) |
 |--------------------------------|--------------------------------|
 | ![boxplot_thalach](images/boxplots/boxplot_thalach.png) | ![boxplot_trestbps](images/boxplots/boxplot_trestbps.png) |
 
-### Foi observado que:
+### Foi observado:
 
-* Obs 1
-* Obs 2
-
-### Scatterplots:
-| ![scatterplot_age_chol](images/scatterplots/scatterplot_age_chol.png) | ![scatterplot_age_thalach](images/scatterplots/scatterplot_age_thalach.png) |
-|--------------------------------|--------------------------------|
-| ![scatterplot_age_trestbps](images/scatterplots/scatterplot_age_trestbps.png) | ![scatterplot_chol_age](images/scatterplots/scatterplot_chol_age.png) |
-| ![scatterplot_chol_thalach](images/scatterplots/scatterplot_chol_thalach.png) | ![scatterplot_chol_trestbps](images/scatterplots/scatterplot_chol_trestbps.png) |
-| ![scatterplot_thalach_age](images/scatterplots/scatterplot_thalach_age.png) | ![scatterplot_thalach_chol](images/scatterplots/scatterplot_thalach_chol.png) |
-| ![scatterplot_thalach_trestbps](images/scatterplots/scatterplot_thalach_trestbps.png) | ![scatterplot_trestbps_age](images/scatterplots/scatterplot_trestbps_age.png) |
-| ![scatterplot_trestbps_chol](images/scatterplots/scatterplot_trestbps_chol.png) | ![scatterplot_trestbps_thalach](images/scatterplots/scatterplot_trestbps_thalach.png) |
-
-### Foi observado que:
-
-* Obs 1
-* Obs 2
+* Apenas a frequência cardíaca máxima (thalach) parece ser um maior indicador do grupo com doenças cardíacas, os outros estão bem distribuídos
 
 
-### Pairplot:
+### Pairplot (Gráfico de Dispersão):
 ![Pairplot](images/pairplot.png)
 
-### Foi observado que:
+### Foi observado:
 
 * Obs 1
 * Obs 2

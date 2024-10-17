@@ -57,16 +57,6 @@ if generate_images:
             plt.legend([], [], frameon=False)
             plt.savefig(f'./images/boxplots/boxplot_{column}.png')
 
-            for column2 in ['age', 'chol', 'trestbps', 'thalach']:
-                if column == column2:
-                    continue
-                sns.scatterplot(data=data, x=column, y=column2, hue='target', palette={1: 'red', 0: 'blue'})
-                plt.title(f'Gráfico de Dispersão de {column} e {column2}')
-                plt.xlabel(column)
-                plt.ylabel(column2)
-                plt.savefig(f'./images/scatterplots/scatterplot_{column}_{column2}.png')
-
-
     # Gráfico de dispersão de todas as variáveis
     sns.pairplot(data, hue='target', palette={0: 'blue', 1: 'red'})
     plt.title('Gráfico de Dispersão de Todas as Variáveis')

@@ -22,7 +22,7 @@ data[cols_with_zeros] = data[cols_with_zeros].replace(0, np.nan)
 
 # Resumo das estatísticas descritivas
 df = data.describe()
-with open('./atividade1_estatisticas_descritivas.md', 'w') as md:
+with open('./markdown/atividade1_estatisticas_descritivas.md', 'w') as md:
     # Escrever o resumo das estatísticas descritivas no arquivo markdown na linha 5
     md.write(df.to_markdown())
 print(df)
@@ -78,7 +78,7 @@ for i, column in enumerate(columns):
         # Append dos resultados de correlações
         correlation_results += f'### `{column}` x `{column2}`\n| Coef. Correlacao | P-Valor | \n | --- | --- | \n | {correlation:.4f} | {p_value:.4f} |\n\n'
 
-with open('./atividade1_correlacoes.md', 'w') as md:
+with open('./markdown/atividade1_correlacoes.md', 'w') as md:
     md.write(correlation_results)
 
 
@@ -98,7 +98,7 @@ coef['Intercept'] = model.intercept_
 coef_md = coef.to_markdown()
 
 # Escrever a tabela markdown em um arquivo
-with open('./atividade1_coeficientes.md', 'w') as md:
+with open('./markdown/atividade1_coeficientes.md', 'w') as md:
     md.write(f'### Coeficientes do Modelo:\n{coef_md}')
 
 
@@ -111,7 +111,7 @@ result = model.fit()
 
 
 # Obter o AIC: Quanto menor o AIC, melhor o modelo
-with open('./atividade1_coeficientes.md', 'a') as md:
+with open('./markdown/atividade1_coeficientes.md', 'a') as md:
     md.write(f'\n\n### AIC do modelo:\n{result.aic}')
 
 
@@ -121,5 +121,5 @@ odds_ratios_df = pd.DataFrame(odds_ratios, columns=['Odds Ratio'])
 odds_ratios_md = odds_ratios_df.to_markdown()
 
 # Append the Odds Ratios table to the markdown file
-with open('./atividade1_coeficientes.md', 'a') as md:
+with open('./markdown/atividade1_coeficientes.md', 'a') as md:
     md.write(f'\n\n### Odds Ratio:\n{odds_ratios_md}')

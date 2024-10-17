@@ -97,7 +97,7 @@
 ### Foi observado:
 
 * Parece que a frequência cardíaca máxima (thalach) tende a diminuir com o avanço da idade
-* As outras variáveis não parecem ter uma correlação aparente em vista que os pontos
+* As outras variáveis não parecem ter uma correlação aparente em vista que os pontos estão mais dispersos
 
 
 ---
@@ -108,14 +108,27 @@
 > -1 = correlação negativa perfeita
 >
 > 0 = sem correlação
+>
+> Valor-P (p-value): Avalia a significância estatística da correlação observada
+>
+> Se o p-valor for baixo, rejeitamos a hipótese nula e concluímos que há uma correlação significativa entre as variáveis (geralmente comparado por `p-valor <= 0.05`, no caso 5%)
+>
+> Se o p-valor for alto, não rejeitamos a hipótese nula, o que sugere que não há evidências suficientes para afirmar que existe uma correlação significativa
 
-### `age` vs `trestbps`:
+### `age` x `chol`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | 0.2198 | 0.0000 |
 
-| Coeficiente de Correlação | P-Valor |
-| ------------------------- | ------- |
-| 0.2711 | 0.0000 |
+### `age` x `thalach`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | -0.3902 | 0.0000 |
 
-Fazer para outras correlações...
+### `chol` x `thalach`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | -0.0218 | 0.4863 |
 
 ---
 
@@ -149,9 +162,24 @@ Como Funciona?
 
 ## Interpretação dos Resultados
 
-Coeficientes do modelo e a influência que as variáveis causam nele
+### Coeficientes do Modelo:
+|    |        age |      sex |       cp |        chol |   thalach |       ca |   Intercept |
+|---:|-----------:|---------:|---------:|------------:|----------:|---------:|------------:|
+|  0 | -0.0485356 | -2.53564 | -0.11936 | -0.00822811 |  0.031184 | -0.43818 |     3.50242 |
 
-O AIC do modelo e sua relevância
+### AIC do modelo:
+441.2955477421557
+
+### Odds Ratio:
+|         |   Odds Ratio |
+|:--------|-------------:|
+| const   |   50.9664    |
+| age     |    0.950171  |
+| sex     |    0.0535761 |
+| cp      |    0.894448  |
+| chol    |    0.99091   |
+| thalach |    1.03348   |
+| ca      |    0.636721  |
 
 
 ---

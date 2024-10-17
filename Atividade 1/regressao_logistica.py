@@ -63,34 +63,47 @@ if generate_images:
     plt.savefig('./images/pairplot.png')
 
 
-# Remover linhas com NaNs nas colunas de interesse
-cleaned_data = data[['age', 'trestbps']].dropna()
+columns = ['age', 'chol', 'thalach']
+correlation_results = ''
 
+for i, column in enumerate(columns):
+    for column2 in columns[i+1:]:
 
-# Calcular a correlação de Pearson: 1 = correlação perfeita, -1 = correlação negativa perfeita, 0 = sem correlação
-correlation, p_value = stats.pearsonr(cleaned_data['age'], cleaned_data['trestbps'])
-print(f'\n\nCoeficiente de Correlação: {correlation:.4f}, p-valor: {p_value:.4f}')
+        # Remover linhas com NaNs nas colunas de interesse
+        cleaned_data = data[[column, column2]].dropna()
+
+        # Calcular a correlação de Pearson: 1 = correlação perfeita, -1 = correlação negativa perfeita, 0 = sem correlação
+        correlation, p_value = stats.pearsonr(cleaned_data[column], cleaned_data[column2])
+        
+        # Append dos resultados de correlações
+        correlation_results += f'### `{column}` x `{column2}`\n| Coef. Correlacao | P-Valor | \n | --- | --- | \n | {correlation:.4f} | {p_value:.4f} |\n\n'
+
+with open('./atividade1_correlacoes.md', 'w') as md:
+    md.write(correlation_results)
 
 
 # Preparar os dados para o modelo (Com Age e Trestbps: Intercept = 3.96587 / 98.15% de probabilidade)
-X = data[['age', 'trestbps', 'thalach', 'cp', 'ca']].dropna()
+X = data[['age', 'sex', 'cp', 'chol', 'thalach', 'ca']].dropna()
 y = data.loc[X.index, 'target']
 
-
 # Ajustar o modelo de regressão logística
-model = LogisticRegression()
+model = LogisticRegression(max_iter=1000)
 model.fit(X, y)
-
 
 # Resumo dos coeficientes: Valores negativos do intercepto levam a probabilidades baixas e valores positivos a probabilidades altas
 coef = pd.DataFrame(model.coef_, columns=X.columns)
 coef['Intercept'] = model.intercept_
-print(f'\n\n{coef}')
+
+# Transformar os coeficientes em uma string no formato de uma tabela markdown
+coef_md = coef.to_markdown()
+
+# Escrever a tabela markdown em um arquivo
+with open('./atividade1_coeficientes.md', 'w') as md:
+    md.write(f'### Coeficientes do Modelo:\n{coef_md}')
 
 
 # Adicionar uma constante para o intercepto
 X_const = sm.add_constant(X)
-
 
 # Ajustar o modelo de regressão logística usando statsmodels
 model = sm.Logit(y, X_const)
@@ -98,11 +111,15 @@ result = model.fit()
 
 
 # Obter o AIC: Quanto menor o AIC, melhor o modelo
-print('\n\nAIC do modelo:', result.aic)
+with open('./atividade1_coeficientes.md', 'a') as md:
+    md.write(f'\n\n### AIC do modelo:\n{result.aic}')
 
 
 # Odds Ratio
 odds_ratios = np.exp(result.params)
-print('\n\nOdds Ratios:')
-for feature, ratio in zip(X.columns, odds_ratios):
-    print(f'-{feature}: {ratio:.4f}')
+odds_ratios_df = pd.DataFrame(odds_ratios, columns=['Odds Ratio'])
+odds_ratios_md = odds_ratios_df.to_markdown()
+
+# Append the Odds Ratios table to the markdown file
+with open('./atividade1_coeficientes.md', 'a') as md:
+    md.write(f'\n\n### Odds Ratio:\n{odds_ratios_md}')

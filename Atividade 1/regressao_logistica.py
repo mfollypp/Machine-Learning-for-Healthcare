@@ -63,7 +63,7 @@ if generate_images:
     plt.savefig('./images/pairplot.png')
 
 
-columns = ['age', 'chol', 'thalach']
+columns = ['age', 'chol', 'thalach', 'trestbps', 'cp']
 correlation_results = ''
 
 for i, column in enumerate(columns):
@@ -82,7 +82,7 @@ with open('./markdown/atividade1_correlacoes.md', 'w') as md:
     md.write(correlation_results)
 
 
-# Preparar os dados para o modelo (Com Age e Trestbps: Intercept = 3.96587 / 98.15% de probabilidade)
+# Preparar os dados para o modelo
 X = data[['age', 'sex', 'cp', 'chol', 'thalach', 'ca']].dropna()
 y = data.loc[X.index, 'target']
 

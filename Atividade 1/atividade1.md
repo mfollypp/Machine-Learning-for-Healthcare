@@ -125,25 +125,60 @@
  | --- | --- | 
  | -0.3902 | 0.0000 |
 
+### `age` x `trestbps`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | 0.2711 | 0.0000 |
+
+### `age` x `cp`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | 0.1626 | 0.0002 |
+
 ### `chol` x `thalach`
 | Coef. Correlacao | P-Valor | 
  | --- | --- | 
  | -0.0218 | 0.4863 |
+
+### `chol` x `trestbps`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | 0.1280 | 0.0000 |
+
+### `chol` x `cp`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | -0.0455 | 0.2964 |
+
+### `thalach` x `trestbps`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | -0.0393 | 0.2091 |
+
+### `thalach` x `cp`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | -0.1173 | 0.0070 |
+
+### `trestbps` x `cp`
+| Coef. Correlacao | P-Valor | 
+ | --- | --- | 
+ | 0.2131 | 0.0000 |
 
 ---
 
 ## Modelo Explicativo: Regressão Logística
 
 ```python
-# Preparar os dados para o modelo (Com Age e Trestbps: Intercept = 3.96587 / 98.15% de probabilidade)
+# Preparar os dados para o modelo
 X = data[['age', 'sex', 'cp', 'chol', 'thalach', 'ca']].dropna()
 y = data.loc[X.index, 'target']
 
-# Identificar variáveis contínuas
-continuous_vars = ['age', 'chol', 'thalach']
+# # Identificar variáveis contínuas
+# continuous_vars = ['age', 'chol', 'thalach']
 
-# Normalizar apenas as variáveis contínuas
-X[continuous_vars] = (X[continuous_vars] - X[continuous_vars].min()) / (X[continuous_vars].max() - X[continuous_vars].min())
+# # Normalizar apenas as variáveis contínuas
+# X[continuous_vars] = (X[continuous_vars] - X[continuous_vars].min()) / (X[continuous_vars].max() - X[continuous_vars].min())
 
 # Ajustar o modelo de regressão logística
 model = LogisticRegression(max_iter=1000)
@@ -167,10 +202,10 @@ Como Funciona?
 
 ## Interpretação dos Resultados
 
-### Coeficientes do Modelo:
-|    |      age |     sex |        cp |    chol |   thalach |        ca |   Intercept |
-|---:|---------:|--------:|----------:|--------:|----------:|----------:|------------:|
-|  0 | -2.04973 | -2.1921 | -0.132445 | -1.6496 |   2.24911 | -0.396035 |     3.66558 |
+### Coeficientes do Modelo (sem normalizar as variáveis):
+|    |        age |      sex |       cp |        chol |   thalach |       ca |   Intercept |
+|---:|-----------:|---------:|---------:|------------:|----------:|---------:|------------:|
+|  0 | -0.0485356 | -2.53564 | -0.11936 | -0.00822811 |  0.031184 | -0.43818 |     3.50242 |
 
 > Para calcular a probabilidade a partir do log-odds (intercepto) de 3.50242, podemos seguir os seguintes passos:
 >
@@ -181,11 +216,58 @@ Como Funciona?
 > Calcular o inverso do resultado: `1/1.0301 = 0.9708`
 >
 > Portanto, a probabilidade é aproximadamente 0.9708, ou `97.08%`
+>
+> A probabilidade calculada a partir do intercepto é a probabilidade predita do evento ocorrer na ausência dos efeitos das variáveis preditoras
+>
+> Os coeficientes do modelo mostram como cada variável individualmente influencia essa probabilidade base
+>
+> Para prever corretamente o 𝑦 (o desfecho), é necessário considerar tanto o intercepto quanto todos os coeficientes associados às variáveis preditoras
+>
+> Interpretação dos Coeficientes:
+>
+> Coeficientes Negativos: Indicam que, conforme a variável aumenta, a probabilidade do evento diminui
+>
+> Coeficientes Positivos: Indicam que, conforme a variável aumenta, a probabilidade do evento aumenta
+
+### AIC do modelo:
+441.2955477421557
+
+> Quanto menor o AIC melhor o modelo
+
+### Odds Ratio:
+|         |   Odds Ratio |
+|:--------|-------------:|
+| const   |   50.9664    |
+| age     |    0.950171  |
+| sex     |    0.0535761 |
+| cp      |    0.894448  |
+| chol    |    0.99091   |
+| thalach |    1.03348   |
+| ca      |    0.636721  |
+
+> Sobre Odds Ratio:
+>
+> Normalizar as variáveis antes de calcular o odds ratio pode tornar a interpretação menos clara
+>
+> O odds ratio é diretamente ligado aos coeficientes do modelo: é a exponencial do coeficiente
+>
+> O odds ratio mostra como as chances do evento mudam com um aumento de uma unidade na variável preditora
+>
+> Odds Ratio = 1: Nenhuma associação. A variável não influencia nas chances do evento
+>
+> Odds Ratio > 1: Associação positiva. As chances do evento ocorrer aumentam com o aumento da variável
+
+Os fatores de risco mais relevantes são:
+
+* Frequência cardíaca máxima, mas influencia muito pouco a probabilidade de ter doença cardíaca pois o coeficiente é muito próximo de 0
+
+### Coeficientes do Modelo (normalizando as variáveis):
+|    |      age |     sex |        cp |    chol |   thalach |        ca |   Intercept |
+|---:|---------:|--------:|----------:|--------:|----------:|----------:|------------:|
+|  0 | -2.04973 | -2.1921 | -0.132445 | -1.6496 |   2.24911 | -0.396035 |     3.66558 |
 
 ### AIC do modelo:
 441.29554774215563
-
-> Quanto menor o AIC melhor o modelo
 
 ### Odds Ratio:
 |         |   Odds Ratio |
@@ -197,10 +279,6 @@ Como Funciona?
 | chol    |    0.0183213 |
 | thalach |   32.7978    |
 | ca      |    0.636721  |
-
-Os fatores de risco mais relevantes são:
-
-* Frequência cardíaca máxima
 ---
 
 ## Conclusão

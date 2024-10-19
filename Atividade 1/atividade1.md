@@ -135,18 +135,23 @@
 ## Modelo Explicativo: Regressão Logística
 
 ```python
-# Preparar os dados para o modelo
+# Preparar os dados para o modelo (Com Age e Trestbps: Intercept = 3.96587 / 98.15% de probabilidade)
 X = data[['age', 'sex', 'cp', 'chol', 'thalach', 'ca']].dropna()
 y = data.loc[X.index, 'target']
 
+# Identificar variáveis contínuas
+continuous_vars = ['age', 'chol', 'thalach']
+
+# Normalizar apenas as variáveis contínuas
+X[continuous_vars] = (X[continuous_vars] - X[continuous_vars].min()) / (X[continuous_vars].max() - X[continuous_vars].min())
+
 # Ajustar o modelo de regressão logística
-model = LogisticRegression()
+model = LogisticRegression(max_iter=1000)
 model.fit(X, y)
 
 # Resumo dos coeficientes: Valores negativos do intercepto levam a probabilidades baixas e valores positivos a probabilidades altas
 coef = pd.DataFrame(model.coef_, columns=X.columns)
 coef['Intercept'] = model.intercept_
-print(f'\n\n{coef}')
 ```
 
 O que é Regressão Logística?
@@ -163,9 +168,9 @@ Como Funciona?
 ## Interpretação dos Resultados
 
 ### Coeficientes do Modelo:
-|    |        age |      sex |       cp |        chol |   thalach |       ca |   Intercept |
-|---:|-----------:|---------:|---------:|------------:|----------:|---------:|------------:|
-|  0 | -0.0485356 | -2.53564 | -0.11936 | -0.00822811 |  0.031184 | -0.43818 |     3.50242 |
+|    |      age |     sex |        cp |    chol |   thalach |        ca |   Intercept |
+|---:|---------:|--------:|----------:|--------:|----------:|----------:|------------:|
+|  0 | -2.04973 | -2.1921 | -0.132445 | -1.6496 |   2.24911 | -0.396035 |     3.66558 |
 
 > Para calcular a probabilidade a partir do log-odds (intercepto) de 3.50242, podemos seguir os seguintes passos:
 >
@@ -178,29 +183,26 @@ Como Funciona?
 > Portanto, a probabilidade é aproximadamente 0.9708, ou `97.08%`
 
 ### AIC do modelo:
-441.2955477421557
+441.29554774215563
 
 > Quanto menor o AIC melhor o modelo
 
 ### Odds Ratio:
 |         |   Odds Ratio |
 |:--------|-------------:|
-| const   |   50.9664    |
-| age     |    0.950171  |
+| const   |   86.4322    |
+| age     |    0.0905063 |
 | sex     |    0.0535761 |
 | cp      |    0.894448  |
-| chol    |    0.99091   |
-| thalach |    1.03348   |
+| chol    |    0.0183213 |
+| thalach |   32.7978    |
 | ca      |    0.636721  |
 
 Os fatores de risco mais relevantes são:
 
-* Idade
-* Tipo de dor no peito
-* Colesterol
 * Frequência cardíaca máxima
 ---
 
 ## Conclusão
 
-Os fatores de risco mais relevantes para a previsão da doença cardíaca são `Idade`, `Tipo de dor no peito`, `Colesterol` e `Frequência cardíaca máxima` e esses insights podem ser utilizados em prática clínica ou em futuros estudos de `para direcionar os pacientes para exames mais específicos ou na descoberta da presença de algum tipo de doença cardíaca`
+Os fatores de risco mais relevantes para a previsão da doença cardíaca é a `Frequência cardíaca máxima` e esses insights podem ser utilizados em prática clínica ou em futuros estudos de `para direcionar os pacientes para exames mais específicos ou na descoberta da presença de algum tipo de doença cardíaca`

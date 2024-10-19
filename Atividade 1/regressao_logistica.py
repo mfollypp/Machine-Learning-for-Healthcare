@@ -86,6 +86,12 @@ with open('./markdown/atividade1_correlacoes.md', 'w') as md:
 X = data[['age', 'sex', 'cp', 'chol', 'thalach', 'ca']].dropna()
 y = data.loc[X.index, 'target']
 
+# Identificar variáveis contínuas
+continuous_vars = ['age', 'chol', 'thalach']
+
+# Normalizar apenas as variáveis contínuas
+X[continuous_vars] = (X[continuous_vars] - X[continuous_vars].min()) / (X[continuous_vars].max() - X[continuous_vars].min())
+
 # Ajustar o modelo de regressão logística
 model = LogisticRegression(max_iter=1000)
 model.fit(X, y)

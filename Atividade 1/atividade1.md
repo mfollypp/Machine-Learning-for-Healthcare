@@ -205,4 +205,4 @@ Os fatores de risco mais relevantes são:
 
 ## Conclusão
 
-Os fatores de risco mais relevantes para a previsão da doença cardíaca é a `Frequência cardíaca máxima` e esses insights podem ser utilizados em prática clínica ou em futuros estudos de `para direcionar os pacientes para exames mais específicos ou na descoberta da presença de algum tipo de doença cardíaca`
+Os fatores de risco mais relevantes para a previsão da doença cardíaca é a `Frequência cardíaca máxima` e esses insights podem ser utilizados em prática clínica ou em futuros estudos `para direcionar os pacientes para exames mais específicos ou na descoberta da presença de algum tipo de doença cardíaca`

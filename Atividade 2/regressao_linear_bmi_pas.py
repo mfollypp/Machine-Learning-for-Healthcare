@@ -36,7 +36,7 @@ df = df.dropna(subset=['BMXBMI', 'BPXSY1'])
 df = df[['RIDAGEYR', 'BMXBMI', 'BPXSY1']]
 
 # Análise descritiva dos dados
-with open('./markdown/analise_descritiva.md', 'w') as file:
+with open('./markdown/analise_descritiva_bmi_pas.md', 'w') as file:
     file.write(df.describe().to_markdown())
 
 # Visualizar a relação entre IMC e PAS
@@ -73,5 +73,5 @@ markdown_content = """
 """.format(mse, coef, r2)
 
 # Escrever o conteúdo no arquivo markdown
-with open('./markdown/coeficientes_modelo.md', 'w', encoding='utf-8') as file:
+with open('./markdown/coeficientes_modelo_bmi_pas.md', 'w', encoding='utf-8') as file:
     file.write(markdown_content)

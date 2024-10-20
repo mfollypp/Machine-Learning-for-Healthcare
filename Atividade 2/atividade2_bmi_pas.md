@@ -116,8 +116,8 @@ Temos um MSE Alto e R² Baixo, logo o modelo não está perfomando bem. As previ
 
 2. Refaça o exercício para IMC e o nível de glicose no sangue (LBGLU), e IMC e a circunferência da cintura (BMXWAIST). Quais dessas medidas estão correlacionadas?
 
-    * IMC e Circunferência da Cintura. Podemos entender o porque nesse [markdown da resposta 2 e 3](https://github.com/mfollypp/Machine-Learning-for-Healthcare/blob/master/Atividade%202/atividade2_2.md)
+    * IMC e Circunferência da Cintura. Podemos entender o porque nesse [markdown](https://github.com/mfollypp/Machine-Learning-for-Healthcare/blob/master/Atividade%202/atividade2_bmi_glu_waist.md#foi-observado-1)
 
 3. Utilizando o modelo de regressão, qual seria o valor estimado da circunferência da cintura para um indivíduo com IMC igual a 25?
 
-    * 89.27 cm. Podemos entender o porque nesse [markdown da resposta 2 e 3](https://github.com/mfollypp/Machine-Learning-for-Healthcare/blob/master/Atividade%202/atividade2_2.md)
+    * 89.27 cm. Podemos entender o porque nesse [markdown](https://github.com/mfollypp/Machine-Learning-for-Healthcare/blob/master/Atividade%202/atividade2_bmi_glu_waist.md#estimando-bmxwaist-para-um-bmxbmi-espec%C3%ADfico)

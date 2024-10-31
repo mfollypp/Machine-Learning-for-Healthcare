@@ -51,6 +51,18 @@ kmeans.fit(scaled_data)
 
 pca = PCA(n_components=2)
 principal_components = pca.fit_transform(scaled_data)
+
+# Loadings DataFrame to see which features impact each component
+loadings_df = pd.DataFrame(pca.components_, columns=df.columns, index=['PC1', 'PC2'])
+
+# Sort features by their contribution (absolute value) to each component
+top_features_pc1 = loadings_df.loc['PC1'].abs().sort_values(ascending=False)
+top_features_pc2 = loadings_df.loc['PC2'].abs().sort_values(ascending=False)
+
+# Print top 5 features for each component
+print(top_features_pc1.head())
+print(top_features_pc2.head())
+
 df_pca = pd.DataFrame(data=principal_components, columns=['PC1', 'PC2'])
 
 df_pca['Cluster'] = kmeans.labels_
@@ -59,9 +71,9 @@ df_pca['Cluster'] = kmeans.labels_
 plt.figure(figsize=(10, 6))
 sns.scatterplot(x='PC1', y='PC2', data=df_pca, hue='Cluster') # , hue='Cluster' if you have cluster labels
 plt.title('PCA Cluster Plot')
-# Adicione os nomes das colunas originais escolhidas como principal component
-plt.xlabel(f'PC1 - {round(pca.explained_variance_ratio_[0] * 100, 2)}%')
-plt.ylabel(f'PC2 - {round(pca.explained_variance_ratio_[1] * 100, 2)}%')
+# Show for each axis the top 3 features that contribute the most to the component
+plt.xlabel(f'Top 3 Features: {top_features_pc1.index[0]}, {top_features_pc1.index[1]}, {top_features_pc1.index[2]}')
+plt.ylabel(f'Top 3 Features: {top_features_pc2.index[0]}, {top_features_pc2.index[1]}, {top_features_pc2.index[2]}')
 plt.show()
 
 # Visualizar os clusters

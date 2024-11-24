@@ -10,3 +10,5 @@ ipykernel
 kneed
 xgboost
 graphviz
+tqdm
+optuna

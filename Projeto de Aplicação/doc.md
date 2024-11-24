@@ -1,7 +1,12 @@
 # Projeto de Aplicação - Of Genomes And Genetics
 
 ## 1. Motivação e Objetivo
-O rápido crescimento populacional, aliado à falta de acesso a cuidados básicos, tem aumentado a incidência de doenças genéticas. Este estudo busca destacar a importância dos testes genéticos durante a gravidez como estratégia para reduzir a mortalidade infantil causada por doenças hereditárias. Nele vamos usar o XGBoost para classificar uma possível doença genética com base em dados de saúde e histórico familiar do paciente.
+
+O rápido crescimento populacional, aliado à falta de acesso a cuidados básicos, tem aumentado a incidência de doenças genéticas. 
+
+Este estudo busca destacar a importância dos testes genéticos durante a gravidez como estratégia para reduzir a mortalidade infantil causada por doenças hereditárias, pegando o caso particular da Leigh Syndrome. 
+
+Nele vamos usar o XGBoost para classificar uma possível doença genética com base em dados de saúde e histórico familiar do paciente.
 
 ---
 
@@ -12,7 +17,39 @@ O rápido crescimento populacional, aliado à falta de acesso a cuidados básico
 
 ### Etapas de preparação dos dados ou pré-processamento
 
-- Remover as colunas que não nos interessam (id, name, etc)
+Remover as colunas:
+
+- Patient Id
+- Patient First Name
+- Family Name
+- Father's name
+- Institute Name
+- Location of Institute
+- Test 1
+- Test 2
+- Test 3
+- Test 4
+- Test 5
+- Parental consent
+- Place of birth
+- Symptom 1
+- Symptom 2
+- Symptom 3
+- Symptom 4
+- Symptom 5
+- Patient Age
+- Status
+- Birth asphyxia
+- Autopsy shows birth defect (if applicable)
+- Follow-up
+
+Filtrar os valores NaN e similares a NaN, e converter os mesmos para NaN
+
+Remover as linhas com NaN
+
+Transformar dados categóricos com One-Hot Encoding usando o get_dummies()
+
+Converter os valores para float64
 
 ### Link para a versão disponibilizada do dataset
 https://www.kaggle.com/datasets/aryarishabh/of-genomes-and-genetics-hackerearth-ml-challenge
@@ -152,14 +189,18 @@ No caso de regressão, o Gradient Boost tenta prever um valor numérico (ex.: pr
 
 1. **Valor inicial**: começamos com um valor inicial estimado para a variável de interesse, que geralmente é a média dos valores reais.
 2. **Resíduos**: calculamos os resíduos (erros) como a diferença entre os valores reais e a estimativa inicial:
+
    $$
    \text{Resíduo} = \text{Valor real} - \text{Valor estimado}
    $$
+
 3. **Árvores de decisão**: uma árvore é treinada para prever os resíduos, e sua previsão é multiplicada por um fator chamado **learning rate**.
 4. **Correção**: o modelo atualiza as previsões somando o valor ajustado pela árvore de resíduos ao valor estimado anterior:
+
    $$
    \text{Nova estimativa} = \text{Estimativa anterior} + (\text{Learning rate} \times \text{Árvore de resíduos})
    $$
+
 5. **Iterações**: repetimos o processo até que o modelo alcance uma boa precisão.
 
 No final, a soma de todas as contribuições das árvores forma a previsão final.
@@ -170,10 +211,13 @@ No caso de classificação, o processo é semelhante ao da regressão, mas envol
 1. **Estimativa inicial**:
    - Como categorias não podem ser manipuladas diretamente, usamos o **log(odds)** como ponto de partida.  
      Exemplo: Se temos um dataset com 6 exemplos, onde 4 são "Sim" e 2 são "Não", a predição inicial é:
+
      $$
      \text{Log(odds)} = \log\left(\frac{\text{Sim}}{\text{Não}}\right) = \log\left(\frac{4}{2}\right) = 0.7
      $$
+
    - Para transformar isso em uma probabilidade, usamos a **função logística**:
+
      $$
      \text{Probabilidade inicial} = \frac{e^{\text{Log(odds)}}}{1 + e^{\text{Log(odds)}}}
      $$
@@ -205,9 +249,11 @@ Também conhecida como **L2 Regularization**, adiciona uma penalidade ao quadrad
   - O modelo aceita um pequeno aumento no **Bias** (erro sistemático) para reduzir significativamente a **Variância** (sensibilidade a pequenas mudanças nos dados).
   - Isso ajuda a evitar predições instáveis em longo prazo.
 - Fórmula:
+
   $$
   \text{Custo} = \text{Erro} + \lambda \sum_{i=1}^{n} \beta_i^2
   $$
+
   - $\lambda$: parâmetro de regularização que controla a penalidade.
   - $\beta_i$: coeficientes do modelo.
 
@@ -240,25 +286,30 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
 
 3. **Similarity Score**:
    - Determina a "pureza" de um nó (folha):
+
      $$
      \text{Similarity Score} = \frac{(\text{soma dos resíduos})^2}{\text{número de resíduos} + \lambda}
      $$
+
    - **Lambda**($\lambda$): parâmetro de regularização que controla o tamanho do similarity score e ajuda no pruning (poda).
 
 4. **Gain**:
    - Avalia o benefício de dividir os dados:
+
      $$
      \text{Gain} = \text{similaridade da folha esquerda} + \text{similaridade da folha direita} - \text{similaridade do nó pai}
      $$
 
 5. **Poda**:
    - O pruning remove divisões irrelevantes comparando o gain com o parâmetro **gamma**($\gamma$):
+
      $$
      \text{Podar se: } \text{Gain} - \gamma < 0
      $$
 
 6. **Cálculo dos Valores nas Folhas**:
    - O valor final das folhas é:
+
      $$
      \text{Output Value} = \frac{\text{soma dos resíduos}}{\text{número de resíduos} + \lambda}
      $$
@@ -271,6 +322,7 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
 1. **Predição Inicial**:
    - Começa com uma probabilidade inicial de 0.5 para todas as classes.
    - Usamos **log(odds)** como estimativa inicial:
+
      $$
      \text{Log(odds)} = \log\left(\frac{\text{probabilidade}}{1 - \text{probabilidade}}\right)
      $$
@@ -280,6 +332,7 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
 
 3. **Similarity Score para Classificação**:
    - A fórmula é adaptada:
+
      $$
      \text{Similarity Score} = \frac{(\text{soma dos resíduos})^2}{\text{soma de } p_i (1 - p_i) + \lambda}
      $$
@@ -291,14 +344,17 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
 
 5. **Cover**:
    - Define o número mínimo de resíduos em uma folha:
+
      $$
      \text{Cover} = \text{Denominador do Similarity Score sem } \lambda
      $$
+
    - O parâmetro `min_child_weight` ajusta o limite mínimo de cover (padrão = 1).
 
 6. **Atualização da Predição**:
    - Nova predição = Log(odds inicial) + Eta × Output Value.
    - Convertendo de log(odds) para probabilidade:
+
      $$
      \text{Probabilidade} = \frac{e^{\text{log(odds)}}}{1 + e^{\text{log(odds)}}}
      $$
@@ -343,7 +399,7 @@ $$
 E por um termo de Regularization que funciona como uma Ridge Regression:
 
 $$
-+ \frac{1}{2} \lambda O_{\text{value}}^2
+\plus \frac{1}{2} \lambda O_{\text{value}}^2
 $$
 
 
@@ -360,7 +416,7 @@ Quanto melhor a predição, maior o log(likelihood) e por isso o objetivo na Log
 O que significa que se quisermos usar o log(likelihood) como uma Loss Function, onde valores menores representam modelos com melhor fit, então precisamos multiplicar o log(likelihood) por -1
 
 $$
-- \sum_{i=1}^{N} y_i \times \log(p) + (1 - y_i) \times \log(1 - p)
+\minus \sum_{i=1}^{N} y_i \times \log(p) + (1 - y_i) \times \log(1 - p)
 $$
 
 Também precisamos alterar essa equação para que ela seja uma função do log(odds) previsto em vez da probabilidade p prevista
@@ -368,15 +424,15 @@ Também precisamos alterar essa equação para que ela seja uma função do log(
 Como a Loss Function as vezes lida somente com uma amostra por vez, podemos tirar o somatório
 
 $$
-- \left[ y_i \times \log(p) + (1 - y_i) \times \log(1 - p) \right]
+\minus \left[ y_i \times \log(p) + (1 - y_i) \times \log(1 - p) \right]
 $$
 
 $$
-- y_i \times \log(p) - (1 - y_i) \times \log(1 - p)
+\minus y_i \times \log(p) - (1 - y_i) \times \log(1 - p)
 $$
 
 $$
-- y_i \times \log(p) - \log(1 - p) + y_i \times \log(1 - p)
+\minus y_i \times \log(p) - \log(1 - p) + y_i \times \log(1 - p)
 $$
 
 Podemos converter log(p) - log(1-p) para uma função log(odds)
@@ -388,7 +444,7 @@ $$
 Resultando em
 
 $$
-- y_i \times \log(\text{odds}) - \log(1 - p)
+\minus y_i \times \log(\text{odds}) - \log(1 - p)
 $$
 
 E podemos converter log(1-p) para uma função log(odds)
@@ -406,7 +462,7 @@ $$
 
 ### Método de validação
 
-Cross Validation e Confusion Matrices provavelmente
+Matriz de confusão
 
 ### Medidas de desempenho
 
@@ -430,4 +486,10 @@ Preencher aqui
 
 ## 5. Conclusão
 
-blablabla
+O XGBoost performou bem pois previu corretamente todos os casos Verdadeiro Positivo e errou com alguns Falso Positivos
+
+No contexto de saúde pode ser mais interessante o fato do erro ter sido para Falso Positivo do que para Falso Negativo
+
+Pois ao menos da a oportunidade do paciente de buscar mais exames e descobrir que não tem a doença do que afirmar que não tem e na realidade ter
+
+Fazendo com que o paciente não realize nenhum tratamento adequado para a doença

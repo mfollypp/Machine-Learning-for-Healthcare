@@ -208,15 +208,11 @@ No caso de classificação, o processo é semelhante ao da regressão, mas envol
    - Como categorias não podem ser manipuladas diretamente, usamos o **log(odds)** como ponto de partida.  
      Exemplo: Se temos um dataset com 6 exemplos, onde 4 são "Sim" e 2 são "Não", a predição inicial é:
 
-     $$
-     \text{Log(odds)} = \log\left(\frac{\text{Sim}}{\text{Não}}\right) = \log\left(\frac{4}{2}\right) = 0.7
-     $$
+     $\text{Log(odds)} = \log\left(\frac{\text{Sim}}{\text{Não}}\right) = \log\left(\frac{4}{2}\right) = 0.7$
 
    - Para transformar isso em uma probabilidade, usamos a **função logística**:
 
-     $$
-     \text{Probabilidade inicial} = \frac{e^{\text{Log(odds)}}}{1 + e^{\text{Log(odds)}}}
-     $$
+     $\text{Probabilidade inicial} = \frac{e^{\text{Log(odds)}}}{1 + e^{\text{Log(odds)}}}$
 
 2. **Resíduos**:
    - Calculamos os resíduos baseados nas probabilidades previstas e nos valores reais (convertendo categorias para 0 e 1).
@@ -246,9 +242,7 @@ Também conhecida como **L2 Regularization**, adiciona uma penalidade ao quadrad
   - Isso ajuda a evitar predições instáveis em longo prazo.
 - Fórmula:
 
-  $$
-  \text{Custo} = \text{Erro} + \lambda \sum_{i=1}^{n} \beta_i^2
-  $$
+  $\text{Custo} = \text{Erro} + \lambda \sum_{i=1}^{n} \beta_i^2$
 
   - $\lambda$: parâmetro de regularização que controla a penalidade.
   - $\beta_i$: coeficientes do modelo.
@@ -283,32 +277,24 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
 3. **Similarity Score**:
    - Determina a "pureza" de um nó (folha):
 
-     $$
-     \text{Similarity Score} = \frac{(\text{soma dos resíduos})^2}{\text{número de resíduos} + \lambda}
-     $$
+     $\text{Similarity Score} = \frac{(\text{soma dos resíduos})^2}{\text{número de resíduos} + \lambda}$
 
    - **Lambda**($\lambda$): parâmetro de regularização que controla o tamanho do similarity score e ajuda no pruning (poda).
 
 4. **Gain**:
    - Avalia o benefício de dividir os dados:
 
-     $$
-     \text{Gain} = \text{similaridade da folha esquerda} + \text{similaridade da folha direita} - \text{similaridade do nó pai}
-     $$
+     $\text{Gain} = \text{similaridade da folha esquerda} + \text{similaridade da folha direita} - \text{similaridade do nó pai}$
 
 5. **Poda**:
    - O pruning remove divisões irrelevantes comparando o gain com o parâmetro **gamma**($\gamma$):
 
-     $$
-     \text{Podar se: } \text{Gain} - \gamma < 0
-     $$
+     $\text{Podar se: } \text{Gain} - \gamma < 0$
 
 6. **Cálculo dos Valores nas Folhas**:
    - O valor final das folhas é:
 
-     $$
-     \text{Output Value} = \frac{\text{soma dos resíduos}}{\text{número de resíduos} + \lambda}
-     $$
+     $\text{Output Value} = \frac{\text{soma dos resíduos}}{\text{número de resíduos} + \lambda}$
 
 7. **Atualização da Predição**:
    - Nova predição = Estimativa inicial + $\eta$ ("Eta" que é o learning rate, padrão = 0.3) × Output Value.
@@ -319,9 +305,7 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
    - Começa com uma probabilidade inicial de 0.5 para todas as classes.
    - Usamos **log(odds)** como estimativa inicial:
 
-     $$
-     \text{Log(odds)} = \log\left(\frac{\text{probabilidade}}{1 - \text{probabilidade}}\right)
-     $$
+     $\text{Log(odds)} = \log\left(\frac{\text{probabilidade}}{1 - \text{probabilidade}}\right)$
 
 2. **Cálculo dos Resíduos**:
    - Semelhante à regressão, mas ajustado para probabilidades.
@@ -329,9 +313,7 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
 3. **Similarity Score para Classificação**:
    - A fórmula é adaptada:
 
-     $$
-     \text{Similarity Score} = \frac{(\text{soma dos resíduos})^2}{\text{soma de } p_i (1 - p_i) + \lambda}
-     $$
+     $\text{Similarity Score} = \frac{(\text{soma dos resíduos})^2}{\text{soma de } p_i (1 - p_i) + \lambda}$
 
 4. **Construção da Árvore**:
    - Começa com uma única folha com todos os resíduos.
@@ -341,9 +323,7 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
 5. **Cover**:
    - Define o número mínimo de resíduos em uma folha:
 
-     $$
-     \text{Cover} = \text{Denominador do Similarity Score sem } \lambda
-     $$
+     $\text{Cover} = \text{Denominador do Similarity Score sem } \lambda$
 
    - O parâmetro `min_child_weight` ajusta o limite mínimo de cover (padrão = 1).
 
@@ -351,9 +331,7 @@ Ele pode ser usado para problemas de **Regression** (previsão numérica) ou **C
    - Nova predição = Log(odds inicial) + Eta × Output Value.
    - Convertendo de log(odds) para probabilidade:
 
-     $$
-     \text{Probabilidade} = \frac{e^{\text{log(odds)}}}{1 + e^{\text{log(odds)}}}
-     $$
+     $\text{Probabilidade} = \frac{e^{\text{log(odds)}}}{1 + e^{\text{log(odds)}}}$
 
 7. **Iterações**:
    - Novos resíduos são calculados e usados para ajustar as próximas árvores, reduzindo cada vez mais os erros.

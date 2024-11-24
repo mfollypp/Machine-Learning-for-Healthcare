@@ -8,3 +8,5 @@ statsmodels
 tabulate
 ipykernel
 kneed
+xgboost
+graphviz

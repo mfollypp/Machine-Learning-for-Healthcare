@@ -446,10 +446,4 @@ Preencher aqui
 
 ## 5. Conclusão
 
-O XGBoost performou bem pois previu corretamente todos os casos Verdadeiro Positivo e errou com alguns Falso Positivos
-
-No contexto de saúde pode ser mais interessante o fato do erro ter sido para Falso Positivo do que para Falso Negativo
-
-Pois ao menos da a oportunidade do paciente de buscar mais exames e descobrir que não tem a doença do que afirmar que não tem e na realidade ter
-
-Fazendo com que o paciente não realize nenhum tratamento adequado para a doença
+O XGBoost não performou muito bem pois apesar de ter previsto corretamente todos os casos Verdadeiro Positivo ele não previu nenhum Verdadeiro Negativo

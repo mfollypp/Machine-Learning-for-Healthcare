@@ -190,16 +190,12 @@ No caso de regressão, o Gradient Boost tenta prever um valor numérico (ex.: pr
 1. **Valor inicial**: começamos com um valor inicial estimado para a variável de interesse, que geralmente é a média dos valores reais.
 2. **Resíduos**: calculamos os resíduos (erros) como a diferença entre os valores reais e a estimativa inicial:
 
-   $$
-   \text{Resíduo} = \text{Valor real} - \text{Valor estimado}
-   $$
+   $\text{Resíduo} = \text{Valor real} - \text{Valor estimado}$
 
 3. **Árvores de decisão**: uma árvore é treinada para prever os resíduos, e sua previsão é multiplicada por um fator chamado **learning rate**.
 4. **Correção**: o modelo atualiza as previsões somando o valor ajustado pela árvore de resíduos ao valor estimado anterior:
 
-   $$
-   \text{Nova estimativa} = \text{Estimativa anterior} + (\text{Learning rate} \times \text{Árvore de resíduos})
-   $$
+   $\text{Nova estimativa} = \text{Estimativa anterior} + (\text{Learning rate} \times \text{Árvore de resíduos})$
 
 5. **Iterações**: repetimos o processo até que o modelo alcance uma boa precisão.
 

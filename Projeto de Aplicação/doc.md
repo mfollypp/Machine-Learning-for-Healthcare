@@ -372,9 +372,7 @@ $$
 
 E por um termo de Regularization que funciona como uma Ridge Regression:
 
-$$
-\plus \frac{1}{2} \lambda O_{\text{value}}^2
-$$
+$+ \frac{1}{2} \lambda O_{\text{value}}^2$
 
 
 A Loss function é algo que podemos usar para avaliar quão bem conseguimos predizer o Y
@@ -389,37 +387,25 @@ Quanto melhor a predição, maior o log(likelihood) e por isso o objetivo na Log
 
 O que significa que se quisermos usar o log(likelihood) como uma Loss Function, onde valores menores representam modelos com melhor fit, então precisamos multiplicar o log(likelihood) por -1
 
-$$
-\minus \sum_{i=1}^{N} y_i \times \log(p) + (1 - y_i) \times \log(1 - p)
-$$
+$- \sum_{i=1}^{N} y_i \times \log(p) + (1 - y_i) \times \log(1 - p)$
 
 Também precisamos alterar essa equação para que ela seja uma função do log(odds) previsto em vez da probabilidade p prevista
 
 Como a Loss Function as vezes lida somente com uma amostra por vez, podemos tirar o somatório
 
-$$
-\minus \left[ y_i \times \log(p) + (1 - y_i) \times \log(1 - p) \right]
-$$
+$- \left[ y_i \times \log(p) + (1 - y_i) \times \log(1 - p) \right]$
 
-$$
-\minus y_i \times \log(p) - (1 - y_i) \times \log(1 - p)
-$$
+$- y_i \times \log(p) - (1 - y_i) \times \log(1 - p)$
 
-$$
-\minus y_i \times \log(p) - \log(1 - p) + y_i \times \log(1 - p)
-$$
+$- y_i \times \log(p) - \log(1 - p) + y_i \times \log(1 - p)$
 
 Podemos converter log(p) - log(1-p) para uma função log(odds)
 
-$$
-\log(p) - \log(1 - p) = \log\left(\frac{p}{1 - p}\right) = \log(\text{odds})
-$$
+$\log(p) - \log(1 - p) = \log\left(\frac{p}{1 - p}\right) = \log(\text{odds})$
 
 Resultando em
 
-$$
-\minus y_i \times \log(\text{odds}) - \log(1 - p)
-$$
+$- y_i \times \log(\text{odds}) - \log(1 - p)$
 
 E podemos converter log(1-p) para uma função log(odds)
 

@@ -444,7 +444,7 @@ $$
 
 ### Método de validação
 
-Train-Test Split, Cross Valdidation e Matriz de Confusão
+Train-Test Split, Cross Validation e Matriz de Confusão
 
 ---
 

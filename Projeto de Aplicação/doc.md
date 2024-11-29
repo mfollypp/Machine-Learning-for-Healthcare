@@ -113,23 +113,23 @@ Essa matriz ajuda a calcular métricas importantes, como **acurácia**, **precis
 
 1. **Acurácia:** Mede a precisão geral do modelo.
 
-$ \text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN} $  
+$\text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN}$  
 
 2. **Precisão (Valor Preditivo Positivo):** Indica quantas das previsões positivas feitas pelo modelo são realmente positivas.
 
-$ \text{Precisão} = \frac{TP}{TP + FP} $
+$\text{Precisão} = \frac{TP}{TP + FP}$
 
 3. **Recall (Sensibilidade ou Taxa de Verdadeiros Positivos):** Mede quantos dos casos realmente positivos foram corretamente identificados pelo modelo.
 
-$ \text{Recall} = \frac{TP}{TP + FN} $
+$\text{Recall} = \frac{TP}{TP + FN}$
 
 4. **F1-Score:** Média harmônica entre precisão e recall, útil quando há um desequilíbrio entre as classes.
 
-$ \text{F1-Score} = 2 \cdot \frac{\text{Precisão} \cdot \text{Recall}}{\text{Precisão} + \text{Recall}} $
+$\text{F1-Score} = 2 \cdot \frac{\text{Precisão} \cdot \text{Recall}}{\text{Precisão} + \text{Recall}}$
 
 5. **Especificidade (Taxa de Verdadeiros Negativos):** Mede quão bem o modelo identifica os casos negativos.
 
-$ \text{Especificidade} = \frac{TN}{TN + FP} $
+$\text{Especificidade} = \frac{TN}{TN + FP}$
 
 ---
 

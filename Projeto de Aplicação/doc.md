@@ -42,6 +42,8 @@ Remover as colunas:
 - Birth asphyxia
 - Autopsy shows birth defect (if applicable)
 - Follow-up
+- Blood cell count (mcL)
+- White Blood cell count (thousand per microliter)
 
 Filtrar os valores NaN e similares a NaN, e converter os mesmos para NaN
 
@@ -102,12 +104,32 @@ Por exemplo, em um modelo que prevê se uma pessoa tem ou não uma doença, a ma
 | **Não tem doença (Previsto)** | 20                     | 100                       |
 
 Resumo:
-- VP (Verdadeiro Positivo): o modelo acertou ao prever "tem doença".
-- VN (Verdadeiro Negativo): o modelo acertou ao prever "não tem doença".
-- FP (Falso Positivo): o modelo errou, prevendo "tem doença" para alguém saudável.
-- FN (Falso Negativo): o modelo errou, prevendo "não tem doença" para alguém doente.
+- TP (True Positive / Verdadeiro Positivo): o modelo acertou ao prever "tem doença".
+- TN (True Negative / Verdadeiro Negativo): o modelo acertou ao prever "não tem doença".
+- FP (False Positive / Falso Positivo): o modelo errou, prevendo "tem doença" para alguém saudável.
+- FN (False Negative / Falso Negativo): o modelo errou, prevendo "não tem doença" para alguém doente.
 
-Essa matriz ajuda a calcular métricas importantes, como **acurácia**, **precisão**, **recall** e **F1-score**, para entender melhor o desempenho do modelo.
+Essa matriz ajuda a calcular métricas importantes, como **acurácia**, **precisão**, **recall**, **F1-score** e **especificidade**, para entender melhor o desempenho do modelo.
+
+1. **Acurácia:** Mede a precisão geral do modelo.
+
+$ \text{Acurácia} = \frac{TP + TN}{TP + TN + FP + FN} $  
+
+2. **Precisão (Valor Preditivo Positivo):** Indica quantas das previsões positivas feitas pelo modelo são realmente positivas.
+
+$ \text{Precisão} = \frac{TP}{TP + FP} $
+
+3. **Recall (Sensibilidade ou Taxa de Verdadeiros Positivos):** Mede quantos dos casos realmente positivos foram corretamente identificados pelo modelo.
+
+$ \text{Recall} = \frac{TP}{TP + FN} $
+
+4. **F1-Score:** Média harmônica entre precisão e recall, útil quando há um desequilíbrio entre as classes.
+
+$ \text{F1-Score} = 2 \cdot \frac{\text{Precisão} \cdot \text{Recall}}{\text{Precisão} + \text{Recall}} $
+
+5. **Especificidade (Taxa de Verdadeiros Negativos):** Mede quão bem o modelo identifica os casos negativos.
+
+$ \text{Especificidade} = \frac{TN}{TN + FP} $
 
 ---
 
@@ -422,11 +444,7 @@ $$
 
 ### Método de validação
 
-Matriz de confusão
-
-### Medidas de desempenho
-
-Preencher aqui
+Train-Test Split, Cross Valdidation e Matriz de Confusão
 
 ---
 
@@ -440,10 +458,39 @@ Preencher aqui
 
 ### Medidas de desempenho
 
-Preencher aqui
+| Model | ACC | R2CV | MEAN SQUARED ERROR |
+| --- | --- | --- | --- |
+| LogisticRegression | 0.749326 | 0.725107 | 0.524303 |
+| KNeighborsClassifier | 0.711590 | 0.687198 | 0.559287 |
+| DecisionTreeClassifier | 0.587601 | 0.584993 | 0.642165 |
+| RandomForestClassifier | 0.746631 | 0.733144 | 0.508673 |
+| GradientBoostingClassifier | 0.738544 | 0.692674 | 0.551927 |
+| XGBClassifier | 0.749326 | 0.749360 | 0.500640 |
+
+ACC (Acurácia):
+- Mede a proporção de previsões corretas em relação ao total de previsões.
+- É útil para avaliar modelos de classificação.
+- Quanto `mais próxima de 1` a acurácia, `melhor` o modelo.
+- Exemplo: Se um modelo previu corretamente 90 de 100 casos, a acurácia é 0.9.
+
+R2CV (Coeficiente de Determinação com Validação Cruzada):
+- Mede a proporção da variância dos dados que é explicada pelo modelo.
+- Varia de 0 a 1, onde valores `mais próximos de 1` indicam um modelo `melhor`.
+- A validação cruzada ajuda a garantir que o modelo generalize bem para novos dados.
+- Exemplo: Um R2CV de 0.8 significa que o modelo consegue explicar 80% da variação nos dados. Em outras palavras, o modelo é capaz de prever com precisão 80% das mudanças nos dados.
+
+Mean Squared Error (Erro Quadrático Médio):
+- Mede a média dos quadrados dos erros (diferença entre valores previstos e reais).
+- É útil para avaliar modelos de regressão.
+- `Quanto menor` o MSE, `melhor` o modelo.
+- Exemplo: Um MSE de 0.5 indica que, em média, os erros quadráticos das previsões são 0.5. Em outras palavras é a média dos quadrados das diferenças entre as previsões e os valores reais. Portanto um MSE menor indica previsões mais precisas.
 
 ---
 
 ## 5. Conclusão
 
 O XGBoost não performou muito bem pois apesar de ter previsto corretamente todos os casos Verdadeiro Positivo ele não previu nenhum Verdadeiro Negativo
+
+Mas outros modelos também não performaram bem ou performaram muito próximo do XGBoost com os hiperparâmetros otimizados
+
+Acredito então que a baixa performance pode ser devido a um possível mal tratamento dos dados ou a qualidade dos mesmos (já que muitas colunas como sintomas e testes vieram mascaradas)

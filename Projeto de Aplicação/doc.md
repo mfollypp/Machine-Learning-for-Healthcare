@@ -489,8 +489,4 @@ Mean Squared Error (Erro Quadrático Médio):
 
 ## 5. Conclusão
 
-O XGBoost não performou muito bem pois apesar de ter previsto corretamente todos os casos Verdadeiro Positivo ele não previu nenhum Verdadeiro Negativo
-
-Mas outros modelos também não performaram bem ou performaram muito próximo do XGBoost com os hiperparâmetros otimizados
-
-Acredito então que a baixa performance pode ser devido a um possível mal tratamento dos dados ou a qualidade dos mesmos (já que muitas colunas como sintomas e testes vieram mascaradas)
+O XGBoost não performou bem, acredito que a baixa performance pode ser devido a um possível mal tratamento dos dados ou a qualidade dos mesmos (já que muitas colunas como sintomas e testes vieram mascaradas)
